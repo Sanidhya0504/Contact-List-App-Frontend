@@ -24,14 +24,17 @@ function ContactModal(props) {
     if (!name || !contact || !email) {
       return alert("Some Fields Are Empty!");
     } else {
-      const res = await fetch(`http://localhost:5000/api/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(userDetails),
-      });
+      const res = await fetch(
+        `https://contact-list-app-backend-production.up.railway.app/api/contact`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(userDetails),
+        }
+      );
       const result = await res.json();
       if (!result.error) {
         setUserDetails({ name: "", email: "", contact: "" });

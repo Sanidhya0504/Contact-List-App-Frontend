@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
 function EditModal(props) {
@@ -26,14 +25,17 @@ function EditModal(props) {
     if (!name || !contact || !email) {
       return alert("Some Fields Are Empty!");
     } else {
-      const res = await fetch(`http://localhost:5000/api/contact/`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({ id, ...userDetails }),
-      });
+      const res = await fetch(
+        `https://contact-list-app-backend-production.up.railway.app/api/contact/`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({ id, ...userDetails }),
+        }
+      );
       const result = await res.json();
       if (!result.error) {
         setUserDetails({ name: "", email: "", contact: "" });

@@ -15,12 +15,15 @@ function Display() {
 
   const getcontacts = async () => {
     try {
-      const res = fetch(`http://localhost:5000/api/mycontacts`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+      const res = fetch(
+        `https://contact-list-app-backend-production.up.railway.app/api/mycontacts`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((result) => {
           setContacts(result.contacts);
@@ -39,18 +42,22 @@ function Display() {
   const deleteContact = async (id) => {
     if (window.confirm("are you sure you want to delete this contact ?")) {
       try {
-        const res = await fetch(`http://localhost:5000/api/delete/${id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const res = await fetch(
+          `https://contact-list-app-backend-production.up.railway.app/api/delete/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         const result = await res.json();
         if (!result.error) {
           setContacts(result.myContacts);
 
           setShowModal(false);
         } else {
+          console.log(result.error);
         }
       } catch (err) {
         console.log(err);
