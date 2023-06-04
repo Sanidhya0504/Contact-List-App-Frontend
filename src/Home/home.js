@@ -3,9 +3,6 @@ import HomeNav from "../Navbar/navbar";
 import { Button } from "react-bootstrap";
 import "../App.css";
 function Home() {
-  if (localStorage.getItem("token")) {
-    window.location.href = "/contacts";
-  }
   return (
     <div>
       <HomeNav />
