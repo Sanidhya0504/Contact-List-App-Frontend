@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import HomeNav from "../Navbar/navbar";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function myParams(Component) {
   return (props) => <Component navHook={useNavigate()} />;
@@ -36,13 +37,13 @@ class Login extends Component {
     )
       .then((res) => res.json())
       .then((data) => {
-        if (!data.error) {
+        if (!data.error && data.token) {
           localStorage.setItem("token", data.token);
-          localStorage.setItem("user", data.user.name);
-
           this.props.navHook(`/contacts`);
         } else {
-          console.log(data.error);
+          return toast.error("Wrong Credentials!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
         }
       });
   }
@@ -50,6 +51,7 @@ class Login extends Component {
     return (
       <>
         <HomeNav />
+        <ToastContainer />
         <div className="h-100 d-flex align-items-center justify-content-center">
           <div className="auth-wrapper">
             <div className="auth-inner">
