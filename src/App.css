@@ -140,6 +140,9 @@ html,
   .text4 {
     font-size: 1.1rem;
   }
+  .span-width {
+    width: 5px;
+  }
 }
 @media screen and (max-width: 450px) {
   .text1 {

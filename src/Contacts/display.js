@@ -129,7 +129,7 @@ function Display() {
                           }}
                         >
                           <th scope="row">{contact.name}</th>
-                          <td>{contact.email}</td>
+                          <td>{contact.email.substring(0, 3)}..com</td>
                           <td>{contact.contact}</td>
                         </tr>
                       ))}
