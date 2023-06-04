@@ -20,7 +20,6 @@ function EditModal(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const id = props.id._id;
-    console.log(props.id._id);
     const { name, contact, email } = userDetails;
     if (!name || !contact || !email) {
       return alert("Some Fields Are Empty!");
@@ -57,7 +56,7 @@ function EditModal(props) {
             onHide={handleClose}
             backdrop="static"
             keyboard={false}
-            className="d-flex justify-content-center align-items-center"
+            className="modal-wrap"
           >
             <Modal.Header closeButton>
               <Modal.Title>Enter Contact Details</Modal.Title>
@@ -129,4 +128,4 @@ function EditModal(props) {
   );
 }
 
-export default EditModal;
+export default React.memo(EditModal);

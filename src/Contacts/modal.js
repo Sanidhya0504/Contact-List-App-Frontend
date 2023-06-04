@@ -129,4 +129,4 @@ function ContactModal(props) {
   );
 }
 
-export default ContactModal;
+export default React.memo(ContactModal);

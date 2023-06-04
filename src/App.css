@@ -81,3 +81,44 @@ html,
 .forgot-password a {
   color: #167bff;
 }
+
+.contacts-wrap {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  width: 75vw;
+}
+.modal-wrap {
+  margin-top: 20vh;
+}
+.home-wrap {
+  width: 75vw;
+  margin-top: 8vh;
+}
+
+.background {
+  background-size: contain;
+
+  background-image: url("../public/img/pngegg.png");
+}
+.text-wrap {
+  margin-top: 5vh;
+}
+
+@media screen and (max-width: 1000px) {
+  .home-wrap {
+    width: 90vw;
+  }
+  .text-wrap {
+    margin-top: 3vh;
+  }
+}
+@media screen and (max-width: 700px) {
+  .contacts-wrap {
+    width: 90vw;
+  }
+  .home-wrap {
+    width: 90vw;
+  }
+}

@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Spinner from "../components/spinner";
 import ContactModal from "./modal";
 import EditModal from "./edit";
+import "../App.css";
 
 function Display() {
   const [contacts, setContacts] = useState([]);
@@ -81,8 +81,8 @@ function Display() {
     // </div>
     <>
       <ContactModal getcontacts={getcontacts} />
-      <div className="d-sm-flex flex-column justify-content-center align-items-center">
-        <div className="d-sm-w-100 w-75">
+      <div className="d-flex flex-column justify-content-center align-items-center">
+        <div className="contacts-wrap">
           <hr className="my-4" />
           {loading ? (
             <Spinner splash="Loading Contacts..." />
@@ -142,39 +142,44 @@ function Display() {
         </div>
       </div>
 
-      <Modal
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        className="px-2 d-flex justify-content-center align-items-center"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>{modalData.name}</Modal.Title>
-        </Modal.Header>
+      <div>
+        <Modal
+          show={showModal}
+          onHide={() => setShowModal(false)}
+          className="modal-wrap"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>{modalData.name}</Modal.Title>
+          </Modal.Header>
 
-        <Modal.Body>
-          <p>
-            <strong>Email</strong>: {modalData.email}
-          </p>
-          <p>
-            <strong>Phone Number</strong>: {modalData.contact}
-          </p>
-        </Modal.Body>
+          <Modal.Body>
+            <p>
+              <strong>Email</strong>: {modalData.email}
+            </p>
+            <p>
+              <strong>Phone Number</strong>: {modalData.contact}
+            </p>
+          </Modal.Body>
 
-        <Modal.Footer className="d-flex justify-content-center align-items-center">
-          <EditModal id={modalData} getcontacts={getcontacts} />
-          <button
-            className="btn btn-info"
-            onClick={() => deleteContact(modalData._id)}
-          >
-            Delete
-          </button>
-          <button className="btn btn-info" onClick={() => setShowModal(false)}>
-            Close
-          </button>
-        </Modal.Footer>
-      </Modal>
+          <Modal.Footer className="d-flex justify-content-center align-items-center">
+            <EditModal id={modalData} getcontacts={getcontacts} />
+            <button
+              className="btn btn-info"
+              onClick={() => deleteContact(modalData._id)}
+            >
+              Delete
+            </button>
+            <button
+              className="btn btn-info"
+              onClick={() => setShowModal(false)}
+            >
+              Close
+            </button>
+          </Modal.Footer>
+        </Modal>
+      </div>
     </>
   );
 }
 
-export default Display;
+export default React.memo(Display);
